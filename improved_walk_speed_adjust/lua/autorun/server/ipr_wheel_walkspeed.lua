@@ -35,22 +35,29 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
     if not IsValid(p) then
         return
     end
-    if not ipr_BGetWheel(b) or not p:Alive() then
+    if not ipr_BGetWheel(b) then
         return
     end
-    ipr_SetWheel(p, b)
+    local ipr_cur = CurTime()
+    if (ipr_cur > (p.curwheel or 0)) then
+        if not p:Alive() then
+            return
+        end
+        ipr_SetWheel(p, b)
 
-    local ipr_Mouse_Wheel = ipr_GetMWheel(p)
-    local ipr_WalkSpeed = p:GetWalkSpeed()
-    local ipr_WalkSpeed_Max = p:GetRunSpeed()
-    local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed()
+        local ipr_Mouse_Wheel = ipr_GetMWheel(p)
+        local ipr_WalkSpeed = p:GetWalkSpeed()
+        local ipr_WalkSpeed_Max = p:GetRunSpeed()
+        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed()
 
-    ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
-    ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
-    if (p.ipr_WSetNoLoop == ipr_WalkSpeed) then
-        return
+        ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
+        ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
+        if (p.ipr_WSetNoLoop == ipr_WalkSpeed) then
+            return
+        end
+
+        p:SetWalkSpeed(ipr_WalkSpeed)
+        p.curwheel = ipr_cur + 0.11
+        p.ipr_WSetNoLoop = ipr_WalkSpeed
     end
-
-    p:SetWalkSpeed(ipr_WalkSpeed)
-    p.ipr_WSetNoLoop = ipr_WalkSpeed
 end)
