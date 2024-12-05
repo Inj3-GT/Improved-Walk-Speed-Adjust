@@ -3,7 +3,7 @@
 --- https://github.com/Inj3-GT
 local ipr_SpeedWheel = {}
 ipr_SpeedWheel.MaxRotation = 10 --- The number of times you have to roll your mouse wheel to reach maximum speed.
-ipr_SpeedWheel.ReduceSpeed = 0.95 --- Removes 5% of max running speed (set 1 if you don't want a speed reduction).
+ipr_SpeedWheel.ReduceSpeed = 0.95 --- Withdraws 5% of max running speed (set 1 if you don't want a speed reduction).
 ipr_SpeedWheel.MinRotation = 0 -- Do not touch !
 
 local function ipr_BGetWheel(b)
