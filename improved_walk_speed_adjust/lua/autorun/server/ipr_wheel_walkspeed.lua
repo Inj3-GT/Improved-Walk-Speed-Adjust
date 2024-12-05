@@ -7,7 +7,7 @@ ipr_SpeedWheel.ReduceSpeed = 0.95 --- Removes 5% of max running speed (set 1 if 
 ipr_SpeedWheel.MinRotation = 0 -- Do not touch !
 
 local function ipr_BGetWheel(b)
-    return (b == MOUSE_WHEEL_DOWN or b == MOUSE_WHEEL_UP) and true or false
+    return (b == MOUSE_WHEEL_DOWN or b == MOUSE_WHEEL_UP)
 end
 
 local function ipr_GetMWheel(p)
