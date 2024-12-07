@@ -74,6 +74,14 @@ hook.Add("PlayerDisconnected", "ipr_MouseWheel_Logout", function(p)
 end)
 
 hook.Add("PlayerInitialSpawn", "ipr_MouseWheel_InitSpawn", function(p)
+    if (ipr_SpeedWheel_Config.SendNotification[1]) then
+        timer.Simple(7, function()
+            if not IsValid(p) then
+                return
+            end
+            p:ChatPrint(ipr_SpeedWheel_Config.SendNotification.msg)
+        end)
+    end
     ipr_SResetWheel(p)
 end)
 
