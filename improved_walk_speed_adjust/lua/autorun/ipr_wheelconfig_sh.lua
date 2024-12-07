@@ -1,6 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
+--- Work in progress
 ipr_SpeedWheel_Config = {}
 
 ipr_SpeedWheel_Config.MaxRotation = 10 ---  Le nombre de fois que vous devez faire tourner la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of times you have to roll your mouse wheel to reach maximum speed (default:10).
