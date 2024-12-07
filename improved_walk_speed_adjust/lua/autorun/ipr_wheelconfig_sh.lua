@@ -11,8 +11,8 @@ ipr_SpeedWheel_Config.AddKey = {true, --- Désactive automatiquement la molette 
 }
 
 if (SERVER) then
-    ipr_SpeedWheel_Config.ReduceRunSpeed = 1 --- Réduit la vitesse de course maximale (mettez 1 si vous ne voulez pas de réduction de vitesse). | Withdraws max running speed (set 1 if you don't want a speed reduction).
-    ipr_SpeedWheel_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de la vitesse de marche lente). | Withdraws max slow walk speed (set 1 if you don't want a slow walk reduction).
+    ipr_SpeedWheel_Config.ReduceRunSpeed = 1 --- Réduit la vitesse de course maximale (mettre 1 si vous ne voulez pas de réduction de vitesse). | Withdraws max running speed (set 1 if you don't want a speed reduction).
+    ipr_SpeedWheel_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de vitesse de marche lente). | Withdraws max slow walk speed (set 1 if you don't want a slow walk reduction).
     ipr_SpeedWheel_Config.SendNotification = {true, --- Envoyer une notification | Send a notification
         msg = "Utilisez CAPSLOCK + Molette pour modifier la vitesse de votre personnage."
     }
