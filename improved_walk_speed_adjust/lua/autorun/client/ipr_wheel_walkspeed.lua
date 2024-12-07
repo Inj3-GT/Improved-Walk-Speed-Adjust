@@ -26,7 +26,7 @@ ipr_SpeedWheel.Bind = {
 }
 local function ipr_SWheelWeap(ply, bind, pressed)
     if (ipr_SpeedWheel.Bind[bind]) then
-        if not CMwsDisable then
+        if not ipr_SpeedWheel.CMwsDisable then
             if not ipr_SpeedWheel.Ckey then
                 return false
             end
