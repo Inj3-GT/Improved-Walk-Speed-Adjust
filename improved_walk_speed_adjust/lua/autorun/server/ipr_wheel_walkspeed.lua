@@ -36,8 +36,8 @@ local function ipr_SWheel(p, b)
     ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
 end
 
+local ipr_MKey = ipr_SpeedWheel_Config.AddKey.key
 local function ipr_BKeyPress(b, p, k)
-    local ipr_MKey = ipr_SpeedWheel_Config.AddKey.key
     if (b == ipr_MKey) then
         ipr_SpWheel[p].kpress = k
     end
