@@ -55,6 +55,9 @@ local function ipr_BGetWheel(b, p)
 end
 
 local function ipr_SNetWheel(m, p)
+    if not ipr_SpeedWheel_Config.HUD then
+        return
+    end
     net.Start(ipr_SpeedWheel.WheelNet)
     net.WriteUInt(m, ipr_SpeedWheel.NetBits)
     net.Send(p)
