@@ -55,7 +55,8 @@ local function ipr_BGetWheel(b, p)
 end
 
 local function ipr_SNetWheel(m, p)
-    if not ipr_SpeedWheel_Config.HUD then
+    local ipr_MSync = ipr_SpeedWheel_Config.HUD
+    if not ipr_MSync then
         return
     end
     net.Start(ipr_SpeedWheel.WheelNet)
