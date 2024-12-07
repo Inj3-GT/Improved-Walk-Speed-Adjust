@@ -1,67 +1,125 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-local ipr_SpeedWheel = {}
+
+local ipr_SpeedWheel, ipr_SpWheel = {}, {}
 ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
 ipr_SpeedWheel.MaxRotation = ipr_SpeedWheel_Config.MaxRotation 
-ipr_SpeedWheel.ReduceSpeed = ipr_SpeedWheel_Config.ReduceSpeed
+ipr_SpeedWheel.ReduceRunSpeed = ipr_SpeedWheel_Config.ReduceRunSpeed
+ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
+ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
 ipr_SpeedWheel.MinRotation = 0
+
+local function ipr_CPlayer(p)
+    if not ipr_SpWheel[p] then
+        ipr_SpWheel[p] = {}
+    end
+end
+
+local function ipr_MGetWheel(p)
+    return ipr_SpWheel[p].mwheel or ipr_SpeedWheel.MidRotation
+end
 
 local function ipr_MClamp(v, n, x)
     return (v < n) and n or (v > x) and x or v
 end
 
-local function ipr_MGetWheel(p)
-    return p.mwheel or ipr_SpeedWheel.MinRotation
-end
-
-local function ipr_BGetWheel(b)
-    return (b == MOUSE_WHEEL_DOWN or b == MOUSE_WHEEL_UP)
-end
-
-local function ipr_SetWheel(p, b)
-    if not p.mwheel then
-        p.mwheel = ipr_SpeedWheel.MinRotation
+local function ipr_SWheel(p, b)
+    if not ipr_SpWheel[p].mwheel then
+        ipr_SpWheel[p].mwheel = ipr_SpeedWheel.MidRotation
     end
     if (b == MOUSE_WHEEL_DOWN) then
-        p.mwheel = p.mwheel - 1
+        ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel - 1
     elseif (b == MOUSE_WHEEL_UP) then
-        p.mwheel = p.mwheel + 1
+        ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + 1
     end
 
-    p.mwheel = ipr_MClamp(p.mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
+    ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
 end
+
+local function ipr_BKeyPress(b, p, k)
+    if (b == ipr_SpeedWheel_Config.AddKey.key) then
+        ipr_SpWheel[p].kpress = k
+    end
+end
+
+local function ipr_BGetWheel(b, p)
+    local ipr_GetKey = (b == MOUSE_WHEEL_DOWN or b == MOUSE_WHEEL_UP)
+    if (ipr_SpeedWheel_Config.AddKey[1]) then
+        ipr_CPlayer(p)
+        ipr_BKeyPress(b, p, true)
+        ipr_GetKey = ipr_SpWheel[p].kpress and ipr_GetKey
+    end
+
+    return ipr_GetKey
+end
+
+local function ipr_SNetWheel(m, p)
+    net.Start(ipr_SpeedWheel.WheelNet)
+    net.WriteUInt(m, ipr_SpeedWheel.NetBits)
+    net.Send(p)
+end
+
+local function ipr_SResetWheel(p)
+    if not IsValid(p) then
+        return
+    end
+
+    ipr_CPlayer(p)
+    ipr_SNetWheel(ipr_SpeedWheel.MidRotation, p)
+end
+
+hook.Add("PlayerDisconnected", "ipr_MouseWheel_Logout", function(p)
+    if (ipr_SpWheel[p]) then
+        ipr_SpWheel[p] = nil
+    end
+end)
+
+hook.Add("PlayerInitialSpawn", "ipr_MouseWheel_InitSpawn", function(p)
+    ipr_SResetWheel(p)
+end)
+
+hook.Add("PlayerSpawn", "ipr_MouseWheel_PlayerSpawn", function(p)
+    ipr_SResetWheel(p)
+end)
+
+hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
+    if not IsValid(p) then
+        return
+    end
+
+    ipr_BKeyPress(b, p, false)
+end)
 
 hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
     if not IsValid(p) then
         return
     end
-    if not ipr_BGetWheel(b) then
+    if not ipr_BGetWheel(b, p) then
         return
     end
+    
     local ipr_cur = CurTime()
-    if (ipr_cur > (p.cwheel or 0)) then
+    if (ipr_cur > ((ipr_SpWheel[p] and ipr_SpWheel[p].cwheel) or 0)) then
         if not p:Alive() then
             return
         end
-        ipr_SetWheel(p, b)
+        ipr_SWheel(p, b)
 
         local ipr_Mouse_Wheel = ipr_MGetWheel(p)
         local ipr_WalkSpeed = p:GetWalkSpeed()
         local ipr_WalkSpeed_Max = p:GetRunSpeed()
-        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed()
+        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
 
-        ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
+        ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceRunSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
         ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
-        if (ipr_WalkSpeed == p.nwheel) then
+        if (ipr_WalkSpeed == ipr_SpWheel[p].nwheel) then
             return
         end
+        ipr_SpWheel[p].nwheel = ipr_WalkSpeed
+        ipr_SpWheel[p].cwheel = ipr_cur + 0.1
+        
         p:SetWalkSpeed(ipr_WalkSpeed)
-        p.nwheel = ipr_WalkSpeed
-        p.cwheel = ipr_cur + 0.1
-
-        net.Start("ipr_swheelsync")
-        net.WriteUInt(ipr_Mouse_Wheel, ipr_SpeedWheel.NetBits)
-        net.Send(p)
+        ipr_SNetWheel(ipr_Mouse_Wheel, p)
     end
 end)
