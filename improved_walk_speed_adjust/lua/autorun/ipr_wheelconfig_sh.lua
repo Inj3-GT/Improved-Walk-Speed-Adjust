@@ -2,6 +2,7 @@
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
 ipr_SpeedWheel_Config = {}
+
 ipr_SpeedWheel_Config.MaxRotation = 10 ---  Le nombre de fois que vous devez faire tourner la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of times you have to roll your mouse wheel to reach maximum speed (default:10).
 ipr_SpeedWheel_Config.HUD = true --- Affichage du HUD et synchronisation de l'état (désactivez-le si vous voulez économiser des performances et éviter d'envoyer des messages réseaux). | Displayed HUD and synchronizes status (Disable it if you want to save performance and avoid sending network messages).
 ipr_SpeedWheel_Config.AddKey = {true, --- Désactive automatiquement la molette de la souris pour le sélecteur d'armes lorsque vous appuyez sur la combinaison de touches (KEY_CAPSLOCK + Molette par défaut) ! | Disabled mouse wheel with weapon selector but only if you press this key combination !
