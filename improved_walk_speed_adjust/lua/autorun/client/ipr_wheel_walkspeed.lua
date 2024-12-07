@@ -9,17 +9,18 @@ local function ipr_SWheelSync()
     ipr_SpeedWheel.Rotation = net.ReadUInt(ipr_SpeedWheel.NetBits)
 end
 
+ipr_SpeedWheel.Ckey = ipr_SpeedWheel_Config.AddKey[1]
+ipr_SpeedWheel.AKey = ipr_SpeedWheel_Config.AddKey.key
 local function ipr_SWheelKey()
-    if not ipr_SpeedWheel_Config.AddKey[1] then
+    if not ipr_SpeedWheel.Ckey then
         return
     end
-    local ipr_Key = input.IsKeyDown(ipr_SpeedWheel_Config.AddKey.key)
+    local ipr_Key = input.IsKeyDown(ipr_SpeedWheel.AKey)
     ipr_SpeedWheel.KeyPress = ipr_Key
 end
 
 ipr_SpeedWheel.KeyPress = false
 ipr_SpeedWheel.CMwsDisable = ipr_SpeedWheel_Config.DisableMWS
-ipr_SpeedWheel.Ckey = ipr_SpeedWheel_Config.AddKey[1]
 ipr_SpeedWheel.Bind = {
     ["invprev"] = true,
     ["invnext"] = true,
@@ -37,7 +38,7 @@ local function ipr_SWheelWeap(p, b)
 end
 
 ipr_SpeedWheel.FontHUD = "CreditsText"
-ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel_Config.AddKey.key)
+ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel.AKey)
 ipr_SpeedWheel.MxRotate = ipr_SpeedWheel_Config.MaxRotation
 ipr_SpeedWheel.ScrW = ScrW()
 ipr_SpeedWheel.ScrH = ScrH()
