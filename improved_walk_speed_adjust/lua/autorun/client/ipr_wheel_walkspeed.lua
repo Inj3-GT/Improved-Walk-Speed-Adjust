@@ -24,8 +24,8 @@ ipr_SpeedWheel.Bind = {
     ["invprev"] = true,
     ["invnext"] = true,
 }
-local function ipr_SWheelWeap(ply, bind, pressed)
-    if (ipr_SpeedWheel.Bind[bind]) then
+local function ipr_SWheelWeap(p, b)
+    if (ipr_SpeedWheel.Bind[b]) then
         if not ipr_SpeedWheel.CMwsDisable then
             if not ipr_SpeedWheel.Ckey then
                 return false
