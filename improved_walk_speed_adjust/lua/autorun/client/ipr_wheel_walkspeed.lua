@@ -1,7 +1,6 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-
 local ipr_SpeedWheel = {}
 ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
 ipr_SpeedWheel.FontHUD = "CreditsText"

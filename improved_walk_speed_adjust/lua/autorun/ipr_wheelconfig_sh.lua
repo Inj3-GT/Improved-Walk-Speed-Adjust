@@ -1,7 +1,6 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-
 ipr_SpeedWheel_Config = {}
 ipr_SpeedWheel_Config.MaxRotation = 10 --- The number of times you have to roll your mouse wheel to reach maximum speed (default:10).
 ipr_SpeedWheel_Config.AddKey = {true, --- Disabled mouse wheel with weapon selector but only if you press this key combination !
