@@ -40,10 +40,11 @@ end
 ipr_SpeedWheel.FontHUD = "CreditsText"
 ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel.AKey)
 ipr_SpeedWheel.MxRotate = ipr_SpeedWheel_Config.MaxRotation
+ipr_SpeedWheel.HUD = ipr_SpeedWheel_Config.HUD
 ipr_SpeedWheel.ScrW = ScrW()
 ipr_SpeedWheel.ScrH = ScrH()
 local function ipr_Draw_WalkSpeed()
-    if not ipr_SpeedWheel_Config.HUD then
+    if not ipr_SpeedWheel.HUD then
         return
     end
     local ipr_MLocal = LocalPlayer()
