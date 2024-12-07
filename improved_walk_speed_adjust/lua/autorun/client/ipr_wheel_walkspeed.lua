@@ -18,14 +18,16 @@ local function ipr_SWheelKey()
 end
 
 ipr_SpeedWheel.KeyPress = false
+ipr_SpeedWheel.CMwsDisable = ipr_SpeedWheel_Config.DisableMWS
+ipr_SpeedWheel.Ckey = ipr_SpeedWheel_Config.AddKey[1]
 ipr_SpeedWheel.Bind = {
     ["invprev"] = true,
     ["invnext"] = true,
 }
 local function ipr_SWheelWeap(ply, bind, pressed)
     if (ipr_SpeedWheel.Bind[bind]) then
-        if not ipr_SpeedWheel_Config.DisableMWS then
-            if not ipr_SpeedWheel_Config.AddKey[1] then
+        if not CMwsDisable then
+            if not ipr_SpeedWheel.Ckey then
                 return false
             end
             return ipr_SpeedWheel.KeyPress
@@ -36,6 +38,7 @@ end
 
 ipr_SpeedWheel.FontHUD = "CreditsText"
 ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel_Config.AddKey.key)
+ipr_SpeedWheel.MxRotate = ipr_SpeedWheel_Config.MaxRotation
 ipr_SpeedWheel.ScrW = ScrW()
 ipr_SpeedWheel.ScrH = ScrH()
 local function ipr_Draw_WalkSpeed()
@@ -46,9 +49,9 @@ local function ipr_Draw_WalkSpeed()
     if not ipr_MLocal:Alive() then
         return
     end
-    local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel_Config.MaxRotation) * 100
+    local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel.MxRotate) * 100
     ipr_PercentWheel = math.Round(ipr_PercentWheel)
-    local ipr_Wheel = (ipr_SpeedWheel_Config.AddKey[1]) and "+ Molette" or ""
+    local ipr_Wheel = (ipr_SpeedWheel.Ckey) and "+ Molette" or ""
 
     draw.DrawText(ipr_SpeedWheel.Key.. " " ..ipr_Wheel, ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 45, color_white, TEXT_ALIGN_CENTER)
     draw.DrawText("Vitesse de marche : " ..ipr_PercentWheel.. "%", ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 25, color_white, TEXT_ALIGN_CENTER)
