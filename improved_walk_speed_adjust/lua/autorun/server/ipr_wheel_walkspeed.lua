@@ -8,6 +8,10 @@ ipr_SpeedWheel.MaxRotation = ipr_SpeedWheel_Config.MaxRotation
 ipr_SpeedWheel.ReduceRunSpeed = ipr_SpeedWheel_Config.ReduceRunSpeed
 ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
 ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
+ipr_SpeedWheel.MouseKey = {
+    [MOUSE_WHEEL_DOWN] = {k = "d"},
+    [MOUSE_WHEEL_UP] = {k = "u"},
+}
 ipr_SpeedWheel.MinRotation = 0
 
 local function ipr_CPlayer(p)
@@ -28,11 +32,8 @@ local function ipr_SWheel(p, b)
     if not ipr_SpWheel[p].mwheel then
         ipr_SpWheel[p].mwheel = ipr_SpeedWheel.MidRotation
     end
-    if (b == MOUSE_WHEEL_DOWN) then
-        ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel - 1
-    elseif (b == MOUSE_WHEEL_UP) then
-        ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + 1
-    end
+    local ipr_Mkey = (ipr_SpeedWheel.MouseKey[b].k == "d") and -1 or 1
+    ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + ipr_Mkey
     ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
 end
 
@@ -43,7 +44,7 @@ local function ipr_BKeyPress(b, p, k)
 end
 
 local function ipr_BGetWheel(b, p)
-    local ipr_GetKey = (b == MOUSE_WHEEL_DOWN or b == MOUSE_WHEEL_UP)
+    local ipr_GetKey = ipr_SpeedWheel.MouseKey[b] and true
     if (ipr_SpeedWheel_Config.AddKey[1]) then
         ipr_CPlayer(p)
         ipr_BKeyPress(b, p, true)
@@ -88,7 +89,7 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     ipr_BKeyPress(b, p, false)
 end)
 
-hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
+hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
     if not IsValid(p) then
         return
     end
@@ -96,7 +97,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
         return
     end
     local ipr_cur = CurTime()
-    if (ipr_cur > ((ipr_SpWheel[p] and ipr_SpWheel[p].cwheel) or 0)) then
+    if (ipr_cur > (ipr_SpWheel[p].cwheel or 0)) then
         if not p:Alive() then
             return
         end
@@ -113,7 +114,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
             return
         end
         ipr_SpWheel[p].nwheel = ipr_WalkSpeed
-        ipr_SpWheel[p].cwheel = ipr_cur + 0.1
+        ipr_SpWheel[p].cwheel = ipr_cur + 0.3
         
         p:SetWalkSpeed(ipr_WalkSpeed)
         ipr_SNetWheel(ipr_Mouse_Wheel, p)
