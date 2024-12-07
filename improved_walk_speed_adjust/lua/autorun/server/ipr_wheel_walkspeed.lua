@@ -100,7 +100,7 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     ipr_BKeyPress(b, p, false)
 end)
 
-local ipr_MSpeed = ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
+local ipr_MSlowSpeed = ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
 hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
     if not IsValid(p) then
         return
@@ -118,7 +118,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         local ipr_Mouse_Wheel = ipr_MGetWheel(p)
         local ipr_WalkSpeed = p:GetWalkSpeed()
         local ipr_WalkSpeed_Max = p:GetRunSpeed()
-        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_MSpeed
+        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_MSlowSpeed
 
         ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceRunSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
         ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
