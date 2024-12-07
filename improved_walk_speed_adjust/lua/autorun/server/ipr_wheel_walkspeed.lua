@@ -108,8 +108,8 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
     if not ipr_BGetWheel(b, p) then
         return
     end
-    local ipr_cur = CurTime()
-    if (ipr_cur > (ipr_SpWheel[p].cwheel or 0)) then
+    local ipr_WheelCur = CurTime()
+    if (ipr_WheelCur > (ipr_SpWheel[p].cwheel or 0)) then
         if not p:Alive() then
             return
         end
@@ -126,7 +126,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
             return
         end
         ipr_SpWheel[p].nwheel = ipr_WalkSpeed
-        ipr_SpWheel[p].cwheel = ipr_cur + 0.3
+        ipr_SpWheel[p].cwheel = ipr_WheelCur + 0.3
         
         p:SetWalkSpeed(ipr_WalkSpeed)
         ipr_SNetWheel(ipr_Mouse_Wheel, p)
