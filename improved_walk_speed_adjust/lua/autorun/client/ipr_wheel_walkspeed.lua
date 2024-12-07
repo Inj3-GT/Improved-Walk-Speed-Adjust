@@ -20,14 +20,14 @@ local function ipr_SWheelKey()
 end
 
 ipr_SpeedWheel.KeyPress = false
-ipr_SpeedWheel.CMwsDisable = ipr_SpeedWheel_Config.DisableMWS
+ipr_SpeedWheel.CMWSDisable = ipr_SpeedWheel_Config.DisableMWS
 ipr_SpeedWheel.Bind = {
     ["invprev"] = true,
     ["invnext"] = true,
 }
 local function ipr_SWheelWeap(p, b)
     if (ipr_SpeedWheel.Bind[b]) then
-        if not ipr_SpeedWheel.CMwsDisable then
+        if not ipr_SpeedWheel.CMWSDisable then
             if not ipr_SpeedWheel.Ckey then
                 return false
             end
@@ -37,34 +37,51 @@ local function ipr_SWheelWeap(p, b)
     end
 end
 
+net.Receive("ipr_swheelsync", ipr_SWheelSync)
+hook.Add("StartCommand", "ipr_MouseWheel_KeyPress", ipr_SWheelKey)
+hook.Add("PlayerBindPress", "ipr_MouseWheel_WeapSelector", ipr_SWheelWeap)
+if not ipr_SpeedWheel_Config.HUD then
+    return
+end
+
 ipr_SpeedWheel.ScrW = ScrW()
 ipr_SpeedWheel.ScrH = ScrH()
 local function Ipr_SWOnScreen()
     ipr_SpeedWheel.ScrW, ipr_SpeedWheel.ScrH = ScrW(), ScrH()
 end
 
-ipr_SpeedWheel.FontHUD = "CreditsText"
-ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel.AKey)
+ipr_SpeedWheel.FontHUD = "DefaultFixedDropShadow"
+ipr_SpeedWheel.Percent = 100
+ipr_SpeedWheel.Lerp = ipr_SpeedWheel.Percent / 2
+ipr_SpeedWheel.ColorBox = {Bar_Bg = Color(0, 0, 0, 190), Bar = Color(52, 73, 94, 255)}
 ipr_SpeedWheel.MxRotate = ipr_SpeedWheel_Config.MaxRotation
-ipr_SpeedWheel.HUD = ipr_SpeedWheel_Config.HUD
 local function ipr_Draw_WalkSpeed()
-    if not ipr_SpeedWheel.HUD then
+    if not ipr_SpeedWheel_Config.HUD then
         return
     end
     local ipr_MLocal = LocalPlayer()
     if not ipr_MLocal:Alive() then
         return
     end
-    local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel.MxRotate) * 100
+    local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel.MxRotate) * ipr_SpeedWheel.Percent
     ipr_PercentWheel = math.Round(ipr_PercentWheel)
-    local ipr_Wheel = (ipr_SpeedWheel.Ckey) and "+ Molette" or ""
 
-    draw.DrawText(ipr_SpeedWheel.Key.. " " ..ipr_Wheel, ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 45, color_white, TEXT_ALIGN_CENTER)
-    draw.DrawText("Vitesse de marche : " ..ipr_PercentWheel.. "%", ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 25, color_white, TEXT_ALIGN_CENTER)
+    if (ipr_SpeedWheel_Config.DrawKey) then
+        local ipr_Wheel = (ipr_SpeedWheel.Ckey) and ipr_SpeedWheel_Config.Lang.Key1 or ""
+        draw.DrawText(ipr_SpeedWheel_Config.Lang.Key2.. " " ..ipr_Wheel, ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 50, color_white, TEXT_ALIGN_CENTER)
+    end
+    if (ipr_SpeedWheel_Config.DrawBar) then
+        ipr_PercentWheel_Lerp = (ipr_PercentWheel < 1) and 3 or ipr_PercentWheel
+        ipr_SpeedWheel.Lerp = Lerp(0.05, ipr_SpeedWheel.Lerp, ipr_PercentWheel_Lerp)
+
+        draw.RoundedBox(4, ipr_SpeedWheel.ScrW / 2 - 50, ipr_SpeedWheel.ScrH - 30, ipr_SpeedWheel.Percent, 10, ipr_SpeedWheel.ColorBox.Bar_Bg)
+        draw.RoundedBox(4, ipr_SpeedWheel.ScrW / 2 - 50, ipr_SpeedWheel.ScrH - 30, ipr_SpeedWheel.Lerp, 10, ipr_SpeedWheel.ColorBox.Bar)
+    end
+    if (ipr_SpeedWheel_Config.DrawSpeedPercent) then
+        ipr_PercentWheel_Perc = (ipr_PercentWheel < 1) and 1 or ipr_PercentWheel
+        draw.DrawText(ipr_SpeedWheel_Config.Lang.WalkSpeed.. " " ..ipr_PercentWheel_Perc.. "%", ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 15, color_white, TEXT_ALIGN_CENTER)
+    end
 end
 
-net.Receive("ipr_swheelsync", ipr_SWheelSync)
-hook.Add("StartCommand", "ipr_MouseWheel_KeyPress", ipr_SWheelKey)
-hook.Add("OnScreenSizeChanged", "Ipr_SWOnScreen", Ipr_SWOnScreen)
-hook.Add("PlayerBindPress", "ipr_MouseWheel_WeapSelector", ipr_SWheelWeap)
 hook.Add("HUDPaint", "ipr_MouseWheel_DrawWalkSpeed", ipr_Draw_WalkSpeed)
+hook.Add("OnScreenSizeChanged", "Ipr_SWOnScreen", Ipr_SWOnScreen)
