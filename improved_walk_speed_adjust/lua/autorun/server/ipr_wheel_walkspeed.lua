@@ -1,7 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-local ipr_SpeedWheel, ipr_SpWheel = {}, {}
+local ipr_SpWheel = {}
 
 local function ipr_CPlayer(p)
     if not ipr_SpWheel[p] then
@@ -9,6 +9,7 @@ local function ipr_CPlayer(p)
     end
 end
 
+local ipr_SpeedWheel = {}
 ipr_SpeedWheel.MaxRotation = ipr_SpeedWheel_Config.MaxRotation 
 ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
 local function ipr_MGetWheel(p)
