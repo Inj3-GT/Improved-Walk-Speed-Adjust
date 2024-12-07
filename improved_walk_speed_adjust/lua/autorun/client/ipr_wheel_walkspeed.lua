@@ -3,16 +3,7 @@
 --- https://github.com/Inj3-GT
 local ipr_SpeedWheel = {}
 ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
-ipr_SpeedWheel.FontHUD = "CreditsText"
-ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel_Config.AddKey.key)
-ipr_SpeedWheel.KeyPress = false
 ipr_SpeedWheel.Rotation = 0
-ipr_SpeedWheel.ScrW = ScrW()
-ipr_SpeedWheel.ScrH = ScrH()
-ipr_SpeedWheel.Bind = {
-    ["invprev"] = true,
-    ["invnext"] = true,
-}
 
 local function ipr_SWheelSync()
     ipr_SpeedWheel.Rotation = net.ReadUInt(ipr_SpeedWheel.NetBits)
@@ -26,6 +17,11 @@ local function ipr_SWheelKey()
     ipr_SpeedWheel.KeyPress = ipr_Key
 end
 
+ipr_SpeedWheel.KeyPress = false
+ipr_SpeedWheel.Bind = {
+    ["invprev"] = true,
+    ["invnext"] = true,
+}
 local function ipr_SWheelWeap(ply, bind, pressed)
     if (ipr_SpeedWheel.Bind[bind]) then
         if not ipr_SpeedWheel_Config.DisableMWS then
@@ -38,6 +34,10 @@ local function ipr_SWheelWeap(ply, bind, pressed)
     end
 end
 
+ipr_SpeedWheel.FontHUD = "CreditsText"
+ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel_Config.AddKey.key)
+ipr_SpeedWheel.ScrW = ScrW()
+ipr_SpeedWheel.ScrH = ScrH()
 local function ipr_Draw_WalkSpeed()
     if not ipr_SpeedWheel_Config.HUD then
         return
