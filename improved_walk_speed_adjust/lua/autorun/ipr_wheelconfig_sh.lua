@@ -3,7 +3,7 @@
 --- https://github.com/Inj3-GT
 ipr_SpeedWheel_Config = {}
 ipr_SpeedWheel_Config.MaxRotation = 10 --- The number of times you have to roll your mouse wheel to reach maximum speed (default:10).
-ipr_SpeedWheel_Config.HUD = false --- Displayed HUD and synchronizes status (Disable it if you want to save performance and avoid sending network messages).
+ipr_SpeedWheel_Config.HUD = true --- Displayed HUD and synchronizes status (Disable it if you want to save performance and avoid sending network messages).
 ipr_SpeedWheel_Config.AddKey = {true, --- Disabled mouse wheel with weapon selector but only if you press this key combination !
     key = KEY_CAPSLOCK, --- Add an extra button in combination with the mouse wheel to activate dynamic walk speed.
 }
