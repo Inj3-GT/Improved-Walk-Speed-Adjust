@@ -43,10 +43,10 @@ local function ipr_BKeyPress(b, p, k)
     end
 end
 
+local ipr_AKey = ipr_SpeedWheel_Config.AddKey[1]
 local function ipr_BGetWheel(b, p)
     local ipr_GetKey = ipr_SpeedWheel.MouseKey[b] and true
-    local ipr_MKey = ipr_SpeedWheel_Config.AddKey[1]
-    if (ipr_MKey) then
+    if (ipr_AKey) then
         ipr_CPlayer(p)
         ipr_BKeyPress(b, p, true)
         ipr_GetKey = ipr_SpWheel[p].kpress and ipr_GetKey
@@ -54,8 +54,8 @@ local function ipr_BGetWheel(b, p)
     return ipr_GetKey
 end
 
+local ipr_MSync = ipr_SpeedWheel_Config.HUD
 local function ipr_SNetWheel(m, p)
-    local ipr_MSync = ipr_SpeedWheel_Config.HUD
     if not ipr_MSync then
         return
     end
