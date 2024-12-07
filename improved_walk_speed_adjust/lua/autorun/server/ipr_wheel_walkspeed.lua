@@ -125,10 +125,10 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         if (ipr_WalkSpeed == ipr_SpWheel[p].nwheel) then
             return
         end
-        ipr_SpWheel[p].nwheel = ipr_WalkSpeed
-        ipr_SpWheel[p].cwheel = ipr_WheelCur + 0.3
-        
         p:SetWalkSpeed(ipr_WalkSpeed)
         ipr_SNetWheel(ipr_Mouse_Wheel, p)
+
+        ipr_SpWheel[p].nwheel = ipr_WalkSpeed
+        ipr_SpWheel[p].cwheel = ipr_WheelCur + 0.3    
     end
 end)
