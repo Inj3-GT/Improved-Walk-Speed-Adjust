@@ -19,11 +19,11 @@ local function ipr_MClamp(v, n, x)
     return (v < n) and n or (v > x) and x or v
 end
 
+ipr_SpeedWheel.MinRotation = 0
 ipr_SpeedWheel.MouseKey = {
     [MOUSE_WHEEL_DOWN] = {k = "d"},
     [MOUSE_WHEEL_UP] = {k = "u"},
 }
-ipr_SpeedWheel.MinRotation = 0
 local function ipr_SWheel(p, b)
     if not ipr_SpWheel[p].mwheel then
         ipr_SpWheel[p].mwheel = ipr_SpeedWheel.MidRotation
