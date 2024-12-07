@@ -42,6 +42,10 @@ local function ipr_Draw_WalkSpeed()
     if not ipr_SpeedWheel_Config.HUD then
         return
     end
+    local ipr_MLocal = LocalPlayer()
+    if not ipr_MLocal:Alive() then
+        return
+    end
     local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel_Config.MaxRotation) * 100
     ipr_PercentWheel = math.Round(ipr_PercentWheel)
     local ipr_Wheel = (ipr_SpeedWheel_Config.AddKey[1]) and "+ Molette" or ""
