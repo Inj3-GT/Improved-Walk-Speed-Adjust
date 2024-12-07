@@ -37,14 +37,16 @@ local function ipr_SWheel(p, b)
 end
 
 local function ipr_BKeyPress(b, p, k)
-    if (b == ipr_SpeedWheel_Config.AddKey.key) then
+    local ipr_MKey = ipr_SpeedWheel_Config.AddKey.key
+    if (b == ipr_MKey) then
         ipr_SpWheel[p].kpress = k
     end
 end
 
 local function ipr_BGetWheel(b, p)
     local ipr_GetKey = ipr_SpeedWheel.MouseKey[b] and true
-    if (ipr_SpeedWheel_Config.AddKey[1]) then
+    local ipr_MKey = ipr_SpeedWheel_Config.AddKey[1]
+    if (ipr_MKey) then
         ipr_CPlayer(p)
         ipr_BKeyPress(b, p, true)
         ipr_GetKey = ipr_SpWheel[p].kpress and ipr_GetKey
@@ -74,12 +76,14 @@ hook.Add("PlayerDisconnected", "ipr_MouseWheel_Logout", function(p)
 end)
 
 hook.Add("PlayerInitialSpawn", "ipr_MouseWheel_InitSpawn", function(p)
-    if (ipr_SpeedWheel_Config.SendNotification[1]) then
+    local ipr_MNotif = ipr_SpeedWheel_Config.SendNotification[1]
+    if (ipr_MNotif) then
         timer.Simple(7, function()
             if not IsValid(p) then
                 return
             end
-            p:ChatPrint(ipr_SpeedWheel_Config.SendNotification.msg)
+            local ipr_MPrint = ipr_SpeedWheel_Config.SendNotification.msg
+            p:ChatPrint(ipr_MPrint)
         end)
     end
     ipr_SResetWheel(p)
@@ -96,6 +100,7 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     ipr_BKeyPress(b, p, false)
 end)
 
+local ipr_MSpeed = ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
 hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
     if not IsValid(p) then
         return
@@ -113,7 +118,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         local ipr_Mouse_Wheel = ipr_MGetWheel(p)
         local ipr_WalkSpeed = p:GetWalkSpeed()
         local ipr_WalkSpeed_Max = p:GetRunSpeed()
-        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
+        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_MSpeed
 
         ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceRunSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
         ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
