@@ -18,9 +18,9 @@ if (SERVER) then
     }
 else
     ipr_SpeedWheel_Config.DisableMWS = false --- Désactive totalement la molette de la souris pour le sélecteur d'armes (vous pouvez toujours utiliser le clavier pour naviguer dans le sélecteur d'armes), si vous souhaitez aussi utiliser uniquement la molette avec cette variable, mettez ipr_SpeedWheel_Config.AddKey en false ! | Disable mouse wheel for weapon selector (you can still use the keyboard to navigate the weapon selector), if you also want to use only the wheel with this variable, set ipr_SpeedWheel_Config.AddKey to false !
-    ipr_SpeedWheel_Config.DrawBar = true --- Afficher la barre de progression | Show progress bar
-    ipr_SpeedWheel_Config.DrawSpeedPercent = true --- Afficher le pourcentage de vitesse | Display speed percentage
-    ipr_SpeedWheel_Config.DrawKey = true --- Afficher les touches | Display keys
+    ipr_SpeedWheel_Config.DrawBar = true --- Affiche la barre de progression | Show progress bar
+    ipr_SpeedWheel_Config.DrawSpeedPercent = true --- Affiche le pourcentage de vitesse | Display speed percentage
+    ipr_SpeedWheel_Config.DrawKey = true --- Affiche les touches | Display keys
     ipr_SpeedWheel_Config.Lang = {
         WalkSpeed = "Vitesse :",
         Key1 = "+ Molette",
