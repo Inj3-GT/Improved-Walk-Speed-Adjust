@@ -41,8 +41,6 @@ ipr_SpeedWheel.FontHUD = "CreditsText"
 ipr_SpeedWheel.Key = input.GetKeyName(ipr_SpeedWheel.AKey)
 ipr_SpeedWheel.MxRotate = ipr_SpeedWheel_Config.MaxRotation
 ipr_SpeedWheel.HUD = ipr_SpeedWheel_Config.HUD
-ipr_SpeedWheel.ScrW = ScrW()
-ipr_SpeedWheel.ScrH = ScrH()
 local function ipr_Draw_WalkSpeed()
     if not ipr_SpeedWheel.HUD then
         return
@@ -54,6 +52,8 @@ local function ipr_Draw_WalkSpeed()
     local ipr_PercentWheel = (ipr_SpeedWheel.Rotation / ipr_SpeedWheel.MxRotate) * 100
     ipr_PercentWheel = math.Round(ipr_PercentWheel)
     local ipr_Wheel = (ipr_SpeedWheel.Ckey) and "+ Molette" or ""
+    ipr_SpeedWheel.ScrW = ScrW()
+    ipr_SpeedWheel.ScrH = ScrH()
 
     draw.DrawText(ipr_SpeedWheel.Key.. " " ..ipr_Wheel, ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 45, color_white, TEXT_ALIGN_CENTER)
     draw.DrawText("Vitesse de marche : " ..ipr_PercentWheel.. "%", ipr_SpeedWheel.FontHUD, ipr_SpeedWheel.ScrW / 2, ipr_SpeedWheel.ScrH - 25, color_white, TEXT_ALIGN_CENTER)
