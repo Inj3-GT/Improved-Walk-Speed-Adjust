@@ -6,7 +6,7 @@ ipr_SpeedWheel_Config = {}
 
 ipr_SpeedWheel_Config.MaxRotation = 10 ---  Le nombre de rotations avec la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of times you have to roll your mouse wheel to reach maximum speed (default:10).
 ipr_SpeedWheel_Config.HUD = true --- Affichage du HUD et synchronisation de l'état (server -> cient) (désactivez-le si vous voulez économiser des performances et éviter d'envoyer des messages réseaux). | Displayed HUD and synchronizes status (Disable it if you want to save performance and avoid sending network messages).
-ipr_SpeedWheel_Config.AddKey = {true, --- Désactive automatiquement la molette de la souris du sélecteur d'armes lorsque vous appuyez sur la combinaison de touches KEY_CAPSLOCK + Molette (par défaut) ! | Disabled mouse wheel with weapon selector but only if you press this key combination !
+ipr_SpeedWheel_Config.AddKey = {true, --- Désactive automatiquement la molette de la souris du sélecteur d'armes lorsque vous appuyez sur la combinaison de touches KEY_CAPSLOCK + Molette (par défaut) et ajoute une touche supplémentaire ! | Disabled mouse wheel with weapon selector but only if you press this key combination !
     key = KEY_CAPSLOCK --- Ajoute une touche supplémentaire combinée avec la molette de la souris pour activer la vitesse de marche dynamique. | Add an extra button in combination with the mouse wheel to activate dynamic walk speed.
 }
 
