@@ -33,7 +33,6 @@ local function ipr_SWheel(p, b)
     elseif (b == MOUSE_WHEEL_UP) then
         ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + 1
     end
-
     ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
 end
 
@@ -50,7 +49,6 @@ local function ipr_BGetWheel(b, p)
         ipr_BKeyPress(b, p, true)
         ipr_GetKey = ipr_SpWheel[p].kpress and ipr_GetKey
     end
-
     return ipr_GetKey
 end
 
@@ -64,8 +62,8 @@ local function ipr_SResetWheel(p)
     if not IsValid(p) then
         return
     end
-
     ipr_CPlayer(p)
+    ipr_SpWheel[p].mwheel = ipr_SpeedWheel.MidRotation
     ipr_SNetWheel(ipr_SpeedWheel.MidRotation, p)
 end
 
@@ -87,7 +85,6 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     if not IsValid(p) then
         return
     end
-
     ipr_BKeyPress(b, p, false)
 end)
 
@@ -98,7 +95,6 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_Down", function(p, b)
     if not ipr_BGetWheel(b, p) then
         return
     end
-    
     local ipr_cur = CurTime()
     if (ipr_cur > ((ipr_SpWheel[p] and ipr_SpWheel[p].cwheel) or 0)) then
         if not p:Alive() then
