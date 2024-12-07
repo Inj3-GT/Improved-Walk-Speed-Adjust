@@ -19,7 +19,7 @@ net.Receive("ipr_swheelsync", function()
     ipr_SpeedWheel.Rotation = net.ReadUInt(ipr_SpeedWheel.NetBits)
 end)
 
-hook.Add("StartCommand", "ipr_keypress", function(ply, cmd)
+hook.Add("StartCommand", "ipr_MouseWheel_KeyPress", function(ply, cmd)
     if not ipr_SpeedWheel_Config.AddKey[1] then
         return
     end
