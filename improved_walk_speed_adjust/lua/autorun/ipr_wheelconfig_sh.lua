@@ -13,11 +13,11 @@ ipr_SpeedWheel_Config.AddKey = {true, --- Désactive automatiquement la molette 
 if (SERVER) then
     ipr_SpeedWheel_Config.ReduceRunSpeed = 1 --- Réduit la vitesse de course maximale (mettre 1 si vous ne voulez pas de réduction de vitesse). | Withdraws max running speed (set 1 if you don't want a speed reduction).
     ipr_SpeedWheel_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de vitesse de marche lente). | Withdraws max slow walk speed (set 1 if you don't want a slow walk reduction).
-    ipr_SpeedWheel_Config.SendNotification = {true, --- Envoyer une notification | Send a notification
+    ipr_SpeedWheel_Config.SendNotification = {true, --- Envoyer une notification lorsque le joueur se connecte. | Send a notification
         msg = "Utilisez CAPSLOCK + Molette pour modifier la vitesse de votre personnage."
     }
 else
-    ipr_SpeedWheel_Config.DisableMWS = false --- Désactive totalement la molette de la souris pour le sélecteur d'armes (vous pouvez toujours utiliser le clavier pour naviguer dans le sélecteur d'armes), si vous souhaitez aussi utiliser uniquement la molette avec cette variable, mettez ipr_SpeedWheel_Config.AddKey en false ! | Disable mouse wheel for weapon selector (you can still use the keyboard to navigate the weapon selector), if you also want to use only the wheel with this variable, set ipr_SpeedWheel_Config.AddKey to false !
+    ipr_SpeedWheel_Config.DisableMWS = false --- Désactive totalement la molette de la souris pour le sélecteur d'armes(vous pouvez toujours utiliser le clavier pour naviguer dans le sélecteur d'armes), si vous souhaitez aussi utiliser uniquement la molette sans combinaison de touche, mettre ipr_SpeedWheel_Config.AddKey en false ! | Disable mouse wheel for weapon selector (you can still use the keyboard to navigate the weapon selector), if you also want to use only the wheel with this variable, set ipr_SpeedWheel_Config.AddKey to false !
     ipr_SpeedWheel_Config.DrawBar = true --- Affiche la barre de progression | Show progress bar
     ipr_SpeedWheel_Config.DrawSpeedPercent = true --- Affiche le pourcentage de vitesse | Display speed percentage
     ipr_SpeedWheel_Config.DrawKey = true --- Affiche les touches | Display keys
