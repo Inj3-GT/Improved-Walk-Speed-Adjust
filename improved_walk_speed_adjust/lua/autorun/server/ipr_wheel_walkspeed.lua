@@ -7,12 +7,12 @@ ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
 ipr_SpeedWheel.MaxRotation = ipr_SpeedWheel_Config.MaxRotation 
 ipr_SpeedWheel.ReduceRunSpeed = ipr_SpeedWheel_Config.ReduceRunSpeed
 ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
+ipr_SpeedWheel.MinRotation = 0
 ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
 ipr_SpeedWheel.MouseKey = {
     [MOUSE_WHEEL_DOWN] = {k = "d"},
     [MOUSE_WHEEL_UP] = {k = "u"},
 }
-ipr_SpeedWheel.MinRotation = 0
 
 local function ipr_CPlayer(p)
     if not ipr_SpWheel[p] then
