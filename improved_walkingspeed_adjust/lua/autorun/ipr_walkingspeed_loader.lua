@@ -23,7 +23,7 @@ if (SERVER) then
      for _, f in pairs(Ipr_Cl) do
          AddCSLuaFile("ipr_walkingspeed_sys/walkingspeed_lua/client/"..f)
      end
-     print("Improved Join/Leave System By Inj3 - Loaded")
+     print("Improved Walking Speed Adjust By Inj3 - Loaded")
  else
      for _, f in pairs(Ipr_Sh) do
         include("ipr_walkingspeed_sys/walkingspeed_lua/shared/"..f)
