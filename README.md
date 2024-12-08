@@ -1,5 +1,9 @@
 Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 -------
+<p align="center">
+   <img width="160" src="https://i.imgur.com/j0hO8rg.gif" alt="Material Bread logo">
+</p>
+
 - Adjust your walking speed dynamically (Similar to Star Citizen).
 - Works with mouse wheel (up or down).
 - Combine an additional hold-down key (Caps lock: default) with the mouse wheel to adjust your speed.
@@ -7,5 +11,3 @@ Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 - Mouse wheel can be disabled for garry's mod weapon selector.
 - Compatible with all gamemodes.
 - Configuration (lua/ipr_walkspeed_sys/configuration/ipr_walkspeed_config.lua).
-
-![alt tag](https://i.imgur.com/j0hO8rg.gif)
