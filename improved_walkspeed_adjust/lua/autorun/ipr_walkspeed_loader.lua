@@ -1,6 +1,6 @@
---- Script By Inj3 
---- Script By Inj3 
---- Script By Inj3 
+--- Script By Inj3
+--- https://steamcommunity.com/id/Inj3/
+--- https://github.com/Inj3-GT
 local Ipr_Cf = file.Find("ipr_walkspeed_sys/configuration/*", "LUA")
 local Ipr_Cl = file.Find("ipr_walkspeed_sys/walkspeed_lua/client/*", "LUA")
 local Ipr_Sh = file.Find("ipr_walkspeed_sys/walkspeed_lua/shared/*", "LUA")
