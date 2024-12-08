@@ -11,6 +11,6 @@ Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 - HUD with percentage speed, button, and progress bar.
 - Mouse wheel can be disabled for garry's mod weapon selector.
 - Compatible with all gamemodes.
-- Configuration (lua/ipr_walkspeed_sys/configuration/ipr_walkspeed_config.lua).
+- Configuration (lua/ipr_walkingspeed_sys/configuration/ipr_walkingspeed_config.lua).
 
 [Image 2](https://imgur.com/HFc93nB)
