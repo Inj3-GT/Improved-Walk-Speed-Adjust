@@ -14,7 +14,7 @@ if (SERVER) then
     ipr_WalkSpeed_Config.ReduceRunSpeed = 1 --- Réduit la vitesse maximale de course (mettre 1 si vous ne voulez pas de réduction de vitesse de course). | Reduces maximum running speed (set to 1 if you don't want speed reduction).
     ipr_WalkSpeed_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de vitesse de marche lente). | Reduces maximum slow walk speed (set to 1 if you don't want slow walk speed reduction).
     ipr_WalkSpeed_Config.SendNotification = {true, --- Envoyer une notification lorsque le joueur se connecte. | Send a notification when the player logs on.
-        msg = "Utilisez Verr. Maj + Molette pour modifier la vitesse de votre personnage."
+        msg = "Utilisez Verr. Maj + Molette (haut ou bas) pour modifier la vitesse de votre personnage."
     }
 else
     ipr_WalkSpeed_Config.DisableMWS = false --- Désactive totalement la molette de la souris pour le sélecteur d'armes(vous pouvez toujours utiliser le clavier pour naviguer dans le sélecteur d'armes), si vous souhaitez aussi utiliser uniquement la molette sans combinaison de touche, mettre ipr_WalkSpeed_Config.AddKey en false ! | Completely disables the mouse wheel key for the weapon selector (you can still use the keyboard to navigate through the weapon selector), if you also wish to use only the wheel without key combinations, set ipr_WalkSpeed_Config.AddKey to false !
