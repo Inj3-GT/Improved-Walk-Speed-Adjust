@@ -6,7 +6,7 @@ Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 
 - Adjust your walking speed dynamically (Similar to Star Citizen).
 - Works with mouse wheel (up or down).
-- Changing your walking speed in real time, .
+- Changing your walking speed in real time (your maximum speed will never be greater than your sprint speed).
 - Combine an additional hold-down key (Caps lock: default) with the mouse wheel to adjust your speed.
 - HUD with percentage speed, button, and progress bar.
 - Mouse wheel can be disabled for garry's mod weapon selector.
