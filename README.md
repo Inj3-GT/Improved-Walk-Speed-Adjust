@@ -2,7 +2,7 @@ Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 -------
 - Adjust your walking speed dynamically.
 - Works with mouse wheel (up or down).
-- Combine an additional key (hold down) with mouse wheel.
+- Combine an additional hold-down key (Caps lock: default) with the mouse wheel.
 - HUD with percentage speed, button, and progress bar.
 - Mouse wheel can be disabled for garry's mod weapon selector.
 - Compatible with all gamemodes.
