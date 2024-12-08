@@ -10,8 +10,15 @@ local function ipr_CPlayer(p)
 end
 
 local ipr_SpeedWheel = {}
-ipr_SpeedWheel.MaxRotation = ipr_SpeedWheel_Config.MaxRotation 
 ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
+ipr_SpeedWheel.MinRotation = 0
+ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
+ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
+ipr_SpeedWheel.MouseKey = {
+    [MOUSE_WHEEL_DOWN] = {k = "d"},
+    [MOUSE_WHEEL_UP] = {k = "u"},
+}
+
 local function ipr_MGetWheel(p)
     return ipr_SpWheel[p].mwheel or ipr_SpeedWheel.MidRotation
 end
@@ -20,31 +27,27 @@ local function ipr_MClamp(v, n, x)
     return (v < n) and n or (v > x) and x or v
 end
 
-ipr_SpeedWheel.MinRotation = 0
-ipr_SpeedWheel.MouseKey = {
-    [MOUSE_WHEEL_DOWN] = {k = "d"},
-    [MOUSE_WHEEL_UP] = {k = "u"},
-}
 local function ipr_SWheel(p, b)
     if not ipr_SpWheel[p].mwheel then
         ipr_SpWheel[p].mwheel = ipr_SpeedWheel.MidRotation
     end
     local ipr_Mkey = (ipr_SpeedWheel.MouseKey[b].k == "d") and -1 or 1
     ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + ipr_Mkey
-    ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_SpeedWheel.MaxRotation)
+    local ipr_MConf = ipr_SpeedWheel_Config.MaxRotation
+    ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_MConf)
 end
 
-ipr_SpeedWheel.MKey = ipr_SpeedWheel_Config.AddKey.key
 local function ipr_BKeyPress(b, p, k)
-    if (b == ipr_SpeedWheel.MKey) then
+    local ipr_MConf = ipr_SpeedWheel_Config.AddKey.key
+    if (b == ipr_MConf) then
         ipr_SpWheel[p].kpress = k
     end
 end
 
-ipr_SpeedWheel.AKey = ipr_SpeedWheel_Config.AddKey[1]
 local function ipr_BGetWheel(b, p)
     local ipr_GetKey = ipr_SpeedWheel.MouseKey[b] and true
-    if (ipr_SpeedWheel.AKey) then
+    local ipr_MConf = ipr_SpeedWheel_Config.AddKey[1]
+    if (ipr_MConf) then
         ipr_CPlayer(p)
         ipr_BKeyPress(b, p, true)
         ipr_GetKey = ipr_SpWheel[p].kpress and ipr_GetKey
@@ -52,11 +55,9 @@ local function ipr_BGetWheel(b, p)
     return ipr_GetKey
 end
 
-ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
-ipr_SpeedWheel.MSync = ipr_SpeedWheel_Config.HUD
-ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
 local function ipr_SNetWheel(m, p)
-    if not ipr_SpeedWheel.MSync then
+    local ipr_MConf = ipr_SpeedWheel_Config.HUD
+    if not ipr_MConf then
         return
     end
     net.Start(ipr_SpeedWheel.WheelNet)
@@ -80,8 +81,8 @@ hook.Add("PlayerDisconnected", "ipr_MouseWheel_Logout", function(p)
 end)
 
 hook.Add("PlayerInitialSpawn", "ipr_MouseWheel_InitSpawn", function(p)
-    local ipr_MNotif = ipr_SpeedWheel_Config.SendNotification[1]
-    if (ipr_MNotif) then
+    local ipr_MConf = ipr_SpeedWheel_Config.SendNotification[1]
+    if (ipr_MConf) then
         timer.Simple(7, function()
             if not IsValid(p) then
                 return
@@ -104,8 +105,6 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     ipr_BKeyPress(b, p, false)
 end)
 
-ipr_SpeedWheel.MSlowSpeed = ipr_SpeedWheel_Config.ReduceSlowWalkSpeed
-ipr_SpeedWheel.ReduceRunSpeed = ipr_SpeedWheel_Config.ReduceRunSpeed
 hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
     if not IsValid(p) then
         return
@@ -121,11 +120,12 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         ipr_SWheel(p, b)
 
         local ipr_Mouse_Wheel = ipr_MGetWheel(p)
+        local ipr_MConf = ipr_SpeedWheel_Config
         local ipr_WalkSpeed = p:GetWalkSpeed()
         local ipr_WalkSpeed_Max = p:GetRunSpeed()
-        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_SpeedWheel.MSlowSpeed
+        local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_MConf.ReduceSlowWalkSpeed
 
-        ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_SpeedWheel.ReduceRunSpeed - ipr_WalkSpeed_Slow) / (ipr_SpeedWheel.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
+        ipr_WalkSpeed = ipr_WalkSpeed_Slow + ((ipr_WalkSpeed_Max * ipr_MConf.ReduceRunSpeed - ipr_WalkSpeed_Slow) / (ipr_MConf.MaxRotation - ipr_SpeedWheel.MinRotation)) * (ipr_Mouse_Wheel - ipr_SpeedWheel.MinRotation)
         ipr_WalkSpeed = math.Round(ipr_WalkSpeed)
         if (ipr_WalkSpeed == ipr_SpWheel[p].nwheel) then
             return
