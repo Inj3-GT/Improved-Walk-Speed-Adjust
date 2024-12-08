@@ -1,7 +1,7 @@
 Garry's Mod / Inj3 - Adjust your player's speed dynamically with the mouse wheel
 -------
 <p align="center">
-   <img width="160" src="https://i.imgur.com/j0hO8rg.gif" alt="Material Bread logo">
+   <img width="160" src="https://i.imgur.com/j0hO8rg.gif" alt="">
 </p>
 
 - Adjust your walking speed dynamically (Similar to Star Citizen).
