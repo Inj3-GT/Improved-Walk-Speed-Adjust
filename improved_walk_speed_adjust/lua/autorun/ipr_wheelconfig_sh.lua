@@ -11,7 +11,7 @@ ipr_SpeedWheel_Config.AddKey = {true, --- Ajoute une touche supplémentaire et d
 }
 
 if (SERVER) then
-    ipr_SpeedWheel_Config.ReduceRunSpeed = 1 --- Réduit la vitesse de course maximale (mettre 1 si vous ne voulez pas de réduction de vitesse). | Reduces maximum running speed (set to 1 if you don't want speed reduction).
+    ipr_SpeedWheel_Config.ReduceRunSpeed = 1 --- Réduit la vitesse de course maximale (mettre 1 si vous ne voulez pas de réduction de vitesse de course). | Reduces maximum running speed (set to 1 if you don't want speed reduction).
     ipr_SpeedWheel_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de vitesse de marche lente). | Reduces maximum slow walk speed (set to 1 if you don't want slow walk speed reduction).
     ipr_SpeedWheel_Config.SendNotification = {true, --- Envoyer une notification lorsque le joueur se connecte. | Send a notification when the player logs on.
         msg = "Utilisez Verr. Maj + Molette pour modifier la vitesse de votre personnage."
