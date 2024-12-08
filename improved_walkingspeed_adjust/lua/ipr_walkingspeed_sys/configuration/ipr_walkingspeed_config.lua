@@ -1,6 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
+--- GNU GENERAL PUBLIC LICENSE
 ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état. | HUD display and status synchronization.
 
 --- > (↹ Redémarrage du serveur requis | Server restart required)
