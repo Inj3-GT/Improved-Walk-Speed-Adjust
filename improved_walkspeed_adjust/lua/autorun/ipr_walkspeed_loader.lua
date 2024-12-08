@@ -4,7 +4,7 @@
 local Ipr_Cf = file.Find("ipr_walkspeed_sys/configuration/*", "LUA")
 local Ipr_Cl = file.Find("ipr_walkspeed_sys/walkspeed_lua/client/*", "LUA")
 local Ipr_Sh = file.Find("ipr_walkspeed_sys/walkspeed_lua/shared/*", "LUA")
-ipr_SpeedWheel_Config = ipr_SpeedWheel_Config or {}
+ipr_WalkSpeed_Config = ipr_WalkSpeed_Config or {}
 
 if (SERVER) then
      for _, f in pairs(Ipr_Sh) do

@@ -10,10 +10,10 @@ local function ipr_CPlayer(p)
 end
 
 local ipr_SpeedWheel = {}
-ipr_SpeedWheel.MidRotation = math.Round(ipr_SpeedWheel_Config.MaxRotation / 2)
-ipr_SpeedWheel.MinRotation = 0
 ipr_SpeedWheel.WheelNet = "ipr_swheelsync"
-ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
+ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_WalkSpeed_Config.MaxRotation)
+ipr_SpeedWheel.MidRotation = math.Round(ipr_WalkSpeed_Config.MaxRotation / 2)
+ipr_SpeedWheel.MinRotation = 0
 ipr_SpeedWheel.MouseKey = {
     [MOUSE_WHEEL_DOWN] = {k = "d"},
     [MOUSE_WHEEL_UP] = {k = "u"},
@@ -33,12 +33,12 @@ local function ipr_SWheel(p, b)
     end
     local ipr_Mkey = (ipr_SpeedWheel.MouseKey[b].k == "d") and -1 or 1
     ipr_SpWheel[p].mwheel = ipr_SpWheel[p].mwheel + ipr_Mkey
-    local ipr_MConf = ipr_SpeedWheel_Config.MaxRotation
+    local ipr_MConf = ipr_WalkSpeed_Config.MaxRotation
     ipr_SpWheel[p].mwheel = ipr_MClamp(ipr_SpWheel[p].mwheel, ipr_SpeedWheel.MinRotation, ipr_MConf)
 end
 
 local function ipr_BKeyPress(b, p, k)
-    local ipr_MConf = ipr_SpeedWheel_Config.AddKey.key
+    local ipr_MConf = ipr_WalkSpeed_Config.AddKey.key
     if (b == ipr_MConf) then
         ipr_SpWheel[p].kpress = k
     end
@@ -46,7 +46,7 @@ end
 
 local function ipr_BGetWheel(b, p)
     local ipr_GetKey = ipr_SpeedWheel.MouseKey[b] and true
-    local ipr_MConf = ipr_SpeedWheel_Config.AddKey[1]
+    local ipr_MConf = ipr_WalkSpeed_Config.AddKey[1]
     if (ipr_MConf) then
         ipr_CPlayer(p)
         ipr_BKeyPress(b, p, true)
@@ -56,7 +56,7 @@ local function ipr_BGetWheel(b, p)
 end
 
 local function ipr_SNetWheel(m, p)
-    local ipr_MConf = ipr_SpeedWheel_Config.HUD
+    local ipr_MConf = ipr_WalkSpeed_Config.HUD
     if not ipr_MConf then
         return
     end
@@ -81,13 +81,13 @@ hook.Add("PlayerDisconnected", "ipr_MouseWheel_Logout", function(p)
 end)
 
 hook.Add("PlayerInitialSpawn", "ipr_MouseWheel_InitSpawn", function(p)
-    local ipr_MConf = ipr_SpeedWheel_Config.SendNotification[1]
+    local ipr_MConf = ipr_WalkSpeed_Config.SendNotification[1]
     if (ipr_MConf) then
         timer.Simple(7, function()
             if not IsValid(p) then
                 return
             end
-            local ipr_MPrint = ipr_SpeedWheel_Config.SendNotification.msg
+            local ipr_MPrint = ipr_WalkSpeed_Config.SendNotification.msg
             p:ChatPrint(ipr_MPrint)
         end)
     end
@@ -120,7 +120,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         ipr_SWheel(p, b)
 
         local ipr_Mouse_Wheel = ipr_MGetWheel(p)
-        local ipr_MConf = ipr_SpeedWheel_Config
+        local ipr_MConf = ipr_WalkSpeed_Config
         local ipr_WalkSpeed = p:GetWalkSpeed()
         local ipr_WalkSpeed_Max = p:GetRunSpeed()
         local ipr_WalkSpeed_Slow = p:GetSlowWalkSpeed() * ipr_MConf.ReduceSlowWalkSpeed

@@ -2,12 +2,12 @@
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
 local ipr_SpeedWheel = {}
-ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_SpeedWheel_Config.MaxRotation)
-ipr_SpeedWheel.Ckey = ipr_SpeedWheel_Config.AddKey[1]
+ipr_SpeedWheel.NetBits = ipr_NumberOfBits(ipr_WalkSpeed_Config.MaxRotation)
+ipr_SpeedWheel.Ckey = ipr_WalkSpeed_Config.AddKey[1]
 
 do
-    ipr_SpeedWheel.CMWSDisable = ipr_SpeedWheel_Config.DisableMWS
-    ipr_SpeedWheel.AKey = ipr_SpeedWheel_Config.AddKey.key
+    ipr_SpeedWheel.CMWSDisable = ipr_WalkSpeed_Config.DisableMWS
+    ipr_SpeedWheel.AKey = ipr_WalkSpeed_Config.AddKey.key
     ipr_SpeedWheel.KeyPress = false
     ipr_SpeedWheel.Bind = {
         ["invprev"] = true,
@@ -42,7 +42,7 @@ local function ipr_SWheelSync()
     ipr_SpeedWheel_Rotation = net.ReadUInt(ipr_SpeedWheel.NetBits)
 end
 net.Receive("ipr_swheelsync", ipr_SWheelSync)
-if not ipr_SpeedWheel_Config.HUD then
+if not ipr_WalkSpeed_Config.HUD then
     return
 end
 
@@ -58,7 +58,7 @@ local function Ipr_SWOnScreen()
 end
 
 local function ipr_Draw_WalkSpeed()
-    local ipr_SConfWheel = ipr_SpeedWheel_Config
+    local ipr_SConfWheel = ipr_WalkSpeed_Config
     if not ipr_SConfWheel.HUD then
         return
     end
