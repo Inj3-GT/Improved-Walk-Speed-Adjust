@@ -36,14 +36,13 @@ do
     hook.Add("StartCommand", "ipr_MouseWheel_KeyPress", ipr_SWheelKey)
     hook.Add("PlayerBindPress", "ipr_MouseWheel_WeapSelector", ipr_SWheelWeap)
 end
+if not ipr_WalkSpeed_Config.HUD then
+    return
+end
 
 local ipr_SpeedWheel_Rotation = 0
 local function ipr_SWheelSync()
     ipr_SpeedWheel_Rotation = net.ReadUInt(ipr_CWalkSpeed.NetBits)
-end
-net.Receive("ipr_swheelsync", ipr_SWheelSync)
-if not ipr_WalkSpeed_Config.HUD then
-    return
 end
 
 ipr_CWalkSpeed.ScrW = ScrW()
@@ -86,5 +85,6 @@ local function ipr_Draw_WalkSpeed()
     end
 end
 
+net.Receive("ipr_swheelsync", ipr_SWheelSync)
 hook.Add("HUDPaint", "ipr_MouseWheel_DrawWalkSpeed", ipr_Draw_WalkSpeed)
 hook.Add("OnScreenSizeChanged", "Ipr_SWOnScreen", Ipr_SWOnScreen)
