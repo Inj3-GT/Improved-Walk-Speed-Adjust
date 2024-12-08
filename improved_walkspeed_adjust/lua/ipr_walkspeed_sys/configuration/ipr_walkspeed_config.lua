@@ -1,7 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état (server -> cient) (désactivez-le si vous voulez économiser des performances et éviter d'envoyer des messages réseaux). | HUD display and status synchronization (server -> cient) (disable if you want to save performance and avoid sending network messages).
+ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état. | HUD display and status synchronization.
 
 --- > (↹ Redémarrage du serveur requis)
 ipr_WalkSpeed_Config.MaxRotation = 10 --- Le nombre de rotations avec la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of rotations with your mouse wheel to reach maximum speed (default: 10).
