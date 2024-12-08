@@ -1,6 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
+ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état. | HUD display and status synchronization.
 
 --- > (↹ Redémarrage du serveur requis | Server restart required)
 ipr_WalkSpeed_Config.MaxRotation = 10 --- Le nombre de rotations avec la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of rotations with your mouse wheel to reach maximum speed (default: 10).
@@ -8,7 +9,6 @@ ipr_WalkSpeed_Config.AddKey = {true, --- Ajoute une touche supplémentaire et d�
     key = KEY_CAPSLOCK --- Ajoute une touche supplémentaire KEY_CAPSLOCK (resté appuyé) combinée avec la molette de la souris (haut ou bas) pour activer la vitesse de marche dynamique. | Adds an additional button combined with the mouse wheel to activate dynamic walking speed.
 }
 --- <
-ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état. | HUD display and status synchronization.
 
 if (SERVER) then
     ipr_WalkSpeed_Config.ReduceRunSpeed = 1 --- Réduit la vitesse maximale de course (mettre 1 si vous ne voulez pas de réduction de vitesse de course). | Reduces maximum running speed (set to 1 if you don't want speed reduction).
