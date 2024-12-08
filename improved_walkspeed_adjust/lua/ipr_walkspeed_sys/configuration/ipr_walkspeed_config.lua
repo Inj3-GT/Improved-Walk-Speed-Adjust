@@ -1,7 +1,6 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
---- Work in progress
 ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état (server -> cient) (désactivez-le si vous voulez économiser des performances et éviter d'envoyer des messages réseaux). | HUD display and status synchronization (server -> cient) (disable if you want to save performance and avoid sending network messages).
 
 --- > (↹ Redémarrage du serveur requis)
