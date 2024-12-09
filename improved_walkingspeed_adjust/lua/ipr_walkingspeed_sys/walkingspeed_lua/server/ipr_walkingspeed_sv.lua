@@ -22,6 +22,10 @@ local function ipr_GetWheelRotate(p)
 end
 
 local function ipr_SetSecondaryKey(k, b, p)
+    local ipr_CombineKeys = ipr_WalkSpeed_Config.AddKey[1]
+    if not ipr_CombineKeys then
+        return
+    end
     if (b == ipr_WalkSpeed_Config.AddKey.key) and (k ~= ipr_PMouseWheel[p].MouseKeySecond) then
         ipr_PMouseWheel[p].MouseKeySecond = k
     end
