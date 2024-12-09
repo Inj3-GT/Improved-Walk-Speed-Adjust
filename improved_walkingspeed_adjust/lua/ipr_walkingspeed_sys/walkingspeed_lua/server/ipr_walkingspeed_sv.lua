@@ -72,7 +72,6 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     if not IsValid(p) then
         return
     end
-        
     if (ipr_GetSecondaryKey(p)) then
         ipr_SetSecondaryKey(false, b, p)
     end
