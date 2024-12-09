@@ -72,9 +72,7 @@ hook.Add("PlayerButtonUp", "ipr_MouseWheel_ButtonUp", function(p, b)
     if not IsValid(p) then
         return
     end
-    if (ipr_GetSecondaryKey(p)) then
-        ipr_SetSecondaryKey(false, b, p)
-    end
+    ipr_SetSecondaryKey(false, b, p)
 end)
 
 hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
@@ -90,9 +88,7 @@ hook.Add("PlayerButtonDown", "ipr_MouseWheel_ButtonDown", function(p, b)
         if not p:Alive() then
             return
         end
-        if not ipr_GetSecondaryKey(p) then
-            ipr_SetSecondaryKey(true, b, p)
-        end
+        ipr_SetSecondaryKey(true, b, p)
         if not ipr_PressedKeys(p, b) then
             return
         end
