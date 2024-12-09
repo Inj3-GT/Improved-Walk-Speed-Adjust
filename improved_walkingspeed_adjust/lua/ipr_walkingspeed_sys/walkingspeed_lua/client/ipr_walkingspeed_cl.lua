@@ -5,7 +5,6 @@ local ipr_CWalkSpeed = {}
 ipr_CWalkSpeed.Ckey = ipr_WalkSpeed_Config.AddKey[1]
 
 do
-    ipr_CWalkSpeed.CMWSDisable = ipr_WalkSpeed_Config.DisableMWS
     ipr_CWalkSpeed.AKey = ipr_WalkSpeed_Config.AddKey.key
     ipr_CWalkSpeed.KeyPress = false
     ipr_CWalkSpeed.Bind = {
@@ -23,7 +22,8 @@ do
 
     local function ipr_SWheelWeap(p, b)
         if (ipr_CWalkSpeed.Bind[b]) then
-            if not ipr_CWalkSpeed.CMWSDisable then
+            local ipr_CMWSDisable = ipr_WalkSpeed_Config.DisableMWS
+            if not ipr_CMWSDisable then
                 if not ipr_CWalkSpeed.Ckey then
                     return false
                 end
