@@ -2,7 +2,7 @@
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
 --- GNU GENERAL PUBLIC LICENSE
-ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD et synchronisation de l'état. | HUD display and status synchronization.
+ipr_WalkSpeed_Config.HUD = true --- Affichage du HUD. | HUD display.
 ipr_WalkSpeed_Config.ReduceRunSpeed = 1 --- Réduit la vitesse maximale de course (mettre 1 si vous ne voulez pas de réduction de vitesse de course). | Reduces maximum running speed (set to 1 if you don't want speed reduction).
 ipr_WalkSpeed_Config.ReduceSlowWalkSpeed = 0.75 --- Réduit la vitesse maximale de marche lente (mettre 1 si vous ne voulez pas de réduction de vitesse de marche lente). | Reduces maximum slow walk speed (set to 1 if you don't want slow walk speed reduction).
 ipr_WalkSpeed_Config.MaxRotation = 10 --- Le nombre de rotations avec la molette de votre souris pour atteindre la vitesse maximale (par défaut : 10). | The number of rotations with your mouse wheel to reach maximum speed (default: 10).
