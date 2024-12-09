@@ -1,7 +1,7 @@
 --- Script By Inj3
 --- https://steamcommunity.com/id/Inj3/
 --- https://github.com/Inj3-GT
-local ipr_SWalkSpeed = {}
+local ipr_PMouseWheel, ipr_SWalkSpeed = {}, {}
 ipr_SWalkSpeed.MidRotation = math.Round(ipr_WalkSpeed_Config.MaxRotation / 2)
 ipr_SWalkSpeed.MinRotation = 0
 ipr_SWalkSpeed.MouseKey = {
@@ -13,7 +13,6 @@ local function ipr_GetPrimaryKey(b)
     return ipr_SWalkSpeed.MouseKey[b] and true
 end
 
-local ipr_PMouseWheel = {}
 local function ipr_GetSecondaryKey(p)
     return ipr_PMouseWheel[p].MouseKeySecond
 end
