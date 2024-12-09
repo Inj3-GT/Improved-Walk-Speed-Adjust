@@ -6,8 +6,6 @@ local Ipr_Cl = file.Find("ipr_walkingspeed_sys/walkingspeed_lua/client/*", "LUA"
 ipr_WalkSpeed_Config = ipr_WalkSpeed_Config or {}
 
 if (SERVER) then
-    util.AddNetworkString("ipr_swheelsync")
-
     for _, f in pairs(Ipr_Cf) do
         include("ipr_walkingspeed_sys/configuration/"..f)
         AddCSLuaFile("ipr_walkingspeed_sys/configuration/"..f)
