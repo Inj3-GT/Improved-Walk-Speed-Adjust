@@ -35,7 +35,6 @@ local function ipr_SetWheelRotate(p, b)
     if not ipr_PMouseWheel[p].MsWheel then
         ipr_PMouseWheel[p].MsWheel = ipr_SWalkSpeed.MidRotation
     end
-    
     local ipr_MouseWheel = (ipr_SWalkSpeed.MouseKey[b].k == "d") and -1 or 1
     ipr_PMouseWheel[p].MsWheel = ipr_PMouseWheel[p].MsWheel + ipr_MouseWheel
     local ipr_MaxRotate = ipr_WalkSpeed_Config.MaxRotation
