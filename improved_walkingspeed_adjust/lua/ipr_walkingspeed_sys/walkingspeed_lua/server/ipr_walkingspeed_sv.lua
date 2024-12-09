@@ -47,7 +47,6 @@ local function ipr_PressedKeys(p, b)
     if (ipr_CombineKeys) then
         return ipr_GetSecondaryKey(p) and ipr_GetPrimaryKey(b)
     end
-    
     return ipr_GetPrimaryKey(b)
 end
 
